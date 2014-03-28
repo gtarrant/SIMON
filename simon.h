@@ -1,13 +1,10 @@
 #include "uberzahl.h"
-#include <iostream>
 #include <limits.h>
 #include <utility>
 #include <cstdlib>
 
 // implementation of SIMON using 128-bit blocks and 128-bit keys
 
-using std::cout;
-using std::endl;
 using std::pair;
 
 typedef unsigned long long INT;
@@ -49,6 +46,3 @@ class SIMON {
 	// set 128-bit key and perform key expansion
 	void setKey(const pair<INT, INT>&);
 };
-
-int main(){
-}
