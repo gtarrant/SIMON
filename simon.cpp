@@ -4,6 +4,8 @@
 #include <utility>
 #include <cstdlib>
 
+// implementation of SIMON using 128-bit blocks and 128-bit keys
+
 using std::cout;
 using std::endl;
 using std::pair;
