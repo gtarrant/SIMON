@@ -21,9 +21,8 @@ void SIMON::decrypt(void* addr, unsigned nblocks){
 		data++;
 		INT& y = *data;
 		data++;
-//TODO: change so this actually decrypts
-		for (int j = 0; j < T; ++j){
-			round(x, y, j);
+		for (int j = T-1; j >= 0; --j){
+			roundInv(x, y, j);
 		}
 	}
 }
