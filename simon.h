@@ -26,6 +26,8 @@ static const unsigned z[62] ={1,0,1,0,1,1,1,1,0,1,1,1,0,0,0,0,0,0,
 						0,0,0,1,0,0,0,1,1,1,1,1,1,0,0,1,0,1,
 						1,0,1,1,0,0,1,1};
 
+// USAGE: create SIMON object w/ optional seed
+// call genKey/setKey before encryption/decryption
 class SIMON {
 	// round keys
 	INT k[T];
@@ -57,7 +59,7 @@ class SIMON {
 	// set 128-bit key and perform key expansion
 	void setKey(const pair<INT, INT>&);
 
-	// encrypt nblocks*128 bits of contiguous memory starting at addr
+	// encrypt nblocks*16 bytes of contiguous memory starting at addr
 	// NOTE: can segfault if user does not own mem in range [addr, addr+16*nblocks)
 	void encrypt(void* addr, unsigned nblocks);
 	void decrypt(void* addr, unsigned nblocks);
