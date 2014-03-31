@@ -1,10 +1,12 @@
-#include "uberzahl.h"
-#include <limits.h>
 #include <utility>
 #include <random>
+#include <limits.h>
+#define rol(val,k) ((val<<k)|(val>>(sizeof(INT)*CHAR_BIT-k)))
+#define ror(val,k) ((val>>k)|(val<<(sizeof(INT)*CHAR_BIT-k)))
 
 // implementation of SIMON using 128-bit blocks and 128-bit keys
 // must compile with -std=c++11 
+// tested on caen linux; should work if unsigned long long is 64 bits
 
 using std::pair;
 using std::mt19937;
@@ -34,16 +36,6 @@ class SIMON {
 
 	// random number generator
 	mt19937 gen;
-
-	// left rotate
-	inline INT rol(INT val, unsigned k){
-		return (val << k) | (val >> (sizeof(INT)*CHAR_BIT-k));
-	};
-
-	// right rotate
-	inline INT ror(INT val, unsigned k){
-		return (val >> k) | (val << (sizeof(INT)*CHAR_BIT-k));
-	};
 
 	void round(INT &x, INT &y, const unsigned& i);
 
