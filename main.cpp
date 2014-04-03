@@ -32,7 +32,9 @@ int main(){
 	
 	s.setKey(s.genKey());
 	Timer timer;
-	for (int i = 0; i < 15; i++) {
+	
+	cout << "ENCRYPTION" << endl;
+	for (int i = 0; i < 12; i++) {
 	    INT bytes = 2 << i;
 	    INT * dicks = (INT*)malloc(bytes);
 	    for (int j = 0; j < 2*i; j += 2) {
@@ -41,7 +43,7 @@ int main(){
 	    }
 	    
 	    timer.start();
-	    for (int i = 0; i < 10; i++) {
+	    for (int k = 0; k < 10; k++) {
 	      s.encrypt(dicks, bytes);
 	      s.encrypt(dicks, bytes);
 	      s.encrypt(dicks, bytes);
@@ -57,4 +59,33 @@ int main(){
 	    
 	    cout << bytes << " " << (double) timer.getDuration() << endl;
 	}
+	cout << endl;
+	
+	cout << "DECRYPTION" << endl;
+	for (int i = 0; i < 12; i++) {
+	    INT bytes = 2 << i;
+	    INT * dicks = (INT*)malloc(bytes);
+	    for (int j = 0; j < 2*i; j += 2) {
+		dicks[j] = 0x6373656420737265;
+		dicks[j + 1] = 0x6c6c657661727420;
+	    }
+	    
+	    timer.start();
+	    for (int k = 0; k < 10; k++) {
+	      s.decrypt(dicks, bytes);
+	      s.decrypt(dicks, bytes);
+	      s.decrypt(dicks, bytes);
+	      s.decrypt(dicks, bytes);
+	      s.decrypt(dicks, bytes);
+	      s.decrypt(dicks, bytes);
+	      s.decrypt(dicks, bytes);
+	      s.decrypt(dicks, bytes);
+	      s.decrypt(dicks, bytes);
+	      s.decrypt(dicks, bytes);
+	    }
+	    timer.stop();
+	    
+	    cout << bytes << " " << (double) timer.getDuration() << endl;
+	}
+
 }
