@@ -46,7 +46,9 @@ class SIMON {
 	inline SIMON(unsigned seed = 0){ gen.seed(seed); };
 
 	// generate 128-bit key split in two 64-bit ints
-	inline pair<INT, INT> genKey(){ return {gen(), gen()}; };
+	//inline pair<INT, INT> genKey(){ return {gen(), gen()}; };
+	
+	inline void genKey() {setKey({gen(), gen()});}
 
 	// set 128-bit key and perform key expansion
 	void setKey(const pair<INT, INT>&);

@@ -8,6 +8,8 @@ using std::cin;
 using std::endl;
 using std::hex;
 
+void getPerformanceInfo();
+
 int main(){
 	/*
 	SIMON s(1234);
@@ -28,9 +30,14 @@ int main(){
 	s.decrypt(data, 1);
 	cout << "decrypted:" << hex << data[0] << ' ' << hex << data[1] << endl;
 	*/
+ 
+	getPerformanceInfo();
+}
+
+void getPerformanceInfo() {
 	SIMON s(1234);
 	
-	s.setKey(s.genKey());
+	s.genKey();
 	Timer timer;
 	
 	cout << "ENCRYPTION" << endl;
@@ -87,5 +94,4 @@ int main(){
 	    
 	    cout << bytes << " " << (double) timer.getDuration() << endl;
 	}
-
 }
