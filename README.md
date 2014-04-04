@@ -3,19 +3,19 @@
 
 =====COMPILE INSTRUCTIONS=====
 
-Use included Makefile to compile to use main.cpp.
-Included main.cpp file is a test file for performance measure and can be used as a basic reference. 
-Included example.cpp file serves as more examples with different data types and can be used as a main.cpp
-Replace main.cpp with your own main.cpp to call the encryption/decryption/key gen functions.
+Use included Makefile to compile to use example.cpp.
+Included example.cpp file shows examples for usage and serves as a main function.
+Included main.cpp is deprecated and NOT used in compiling, but contains performance function.
 
 Compiled with gcc 4.7.0 to support command line option "-std=c++11".
 
 =====USAGE INSTRUCTIONS=====
 
-See included main.cpp as an example.
+See included example.cpp as an example.
 
 SIMON's constructor argument serves as a seed.
-SIMON's genKey will generate a key. Use the class' setKey to set that output as the Key.
+SIMON's genKey() will generate a key. Use the class' setKey() to set that output as the Key.
+Alternatively, SIMON also includes a setAndGenKey() function to do both.
 SIMON's encrypt and decrypt argument accepts a single uberzahl as an argument.
 
 =====PERFORMANCE=====
