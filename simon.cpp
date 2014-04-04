@@ -50,8 +50,9 @@ std::string SIMON::decrypt(std::string  text) {
 void SIMON::cryptoString(std::string  &text, bool isEncryption) {
   
 	INT bytes = text.size();
+	if (isEncryption) bytes++; // need to append a '\0';
 	short remainder = bytes % 16;
-	if (remainder != 0) bytes += 16 - remainder;
+	if (remainder != 0) bytes += 16 - remainder; // bytes must be a multiple of 16
 	char * data = (char*)malloc(bytes);
 	
 	// seed data with random chars
@@ -85,7 +86,7 @@ void SIMON::cryptoString(std::string  &text, bool isEncryption) {
 void SIMON::doCryptography(uberzahl &num, bool isEncryption) {
 	INT bytes = num.value.size() * 4;
 	short remainder = bytes % 16;
-	if (remainder != 0) bytes += 16 - remainder;
+	if (remainder != 0) bytes += 16 - remainder; // bytes must be a multiple of 16
 	INT * data = (INT*)malloc(bytes);
 
 	uberToArray(num, data, bytes);
