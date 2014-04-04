@@ -12,52 +12,30 @@ using std::hex;
 void getPerformanceInfo();
 
 int main(){
-	/*
-	SIMON s(1234);
-	INT k1, k2;
-	cout << "input key:\n";
-	cin >> hex >> k1;
-	cin >> hex >> k2;
-	s.setKey({k1, k2});
-	cout << "input plaintext:\n";
+		
+	SIMON s(1234); //Seed
 
-	INT * data = (INT*)malloc(16);
-	cin >> hex >> data[0];
-	cin >> hex >> data[1];
-	cout << "plaintext:" << hex << data[0] <<
-						 ' ' << hex << data[1] << endl;
-	s.encrypt(data, 1);
-	cout << "encypted:" << hex << data[0] << ' ' << hex << data[1] << endl;
-	s.decrypt(data, 1);
-	cout << "decrypted:" << hex << data[0] << ' ' << hex << data[1] << endl;
-	*/
- 
-	getPerformanceInfo();
-	/*
-	SIMON s(1234);
-	s.setKey({0x0f0e0d0c0b0a0908, 0x0706050403020100});
-	//uberzahl num("132192742177667483844156138223589028896");
-	uberzahl num("0");
+	//char* pt = new char;
+	//cout << "Enter plaintext (decimal): "<< endl;	
+	//cin >> pt;
+	//cout << "Enter plaintext (hex): "<< endl;
+	//cin >> hex >> pt;
+
+	//s.setKey({0x1,0x0}); //Set Key
+	s.setKey(s.genKey()); //Generate Key
+
+	uberzahl num(0x100000000000000);
 	uberzahl encrypted = s.encrypt(num);
-	cout << "enc: " << encrypted << endl;
-	cout << "ori: " << num << endl;
-	cout << "dec: " << s.decrypt(encrypted) << endl;
-	
-	cout << endl << endl;
-	
-	uberzahl num2("132192742177667483844156138223589028896");
-	//uberzahl num("2");
-	uberzahl encrypted2 = s.encrypt(num2);
-	cout << "encrypted: " << encrypted2 << endl;
-	cout << "original: " << num2 << endl;
-	cout << "decrpyted: " << s.decrypt(encrypted2) << endl;*/
-	
-	
+	uberzahl decrypted = s.decrypt(encrypted);
 
+	cout << "Plaintext (decimal): " << num << endl;
+	cout << "Ciphertext (decimal): " << encrypted << endl;
+	cout << "Decrypted Ciphertext (decimal): " << decrypted << endl;
+	
 }
 
 void getPerformanceInfo() {
-  
+//Gets performance info  
 	SIMON s(1234);
 	
 	s.setKey(s.genKey());
