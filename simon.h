@@ -46,10 +46,6 @@ class SIMON {
 
 	void roundInv(INT& x, INT &y, const unsigned& i);
 	
-	// encrypt nblocks*16 bytes of contiguous memory starting at addr
-	// NOTE: can segfault if user does not own mem in range [addr, addr+16*nblocks)
-	void encryptArray(INT* data, unsigned nblocks);
-	void decryptArray(INT* data, unsigned nblocks);
 	void uberToArray(const uberzahl &num, INT* data, INT bytes);
 	void arrayToUber(uberzahl &num, INT* data, INT bytes);
 	void doCryptography(uberzahl &num, bool isEncryption);
@@ -66,6 +62,12 @@ class SIMON {
 
 	uberzahl encrypt(uberzahl num);
 	uberzahl decrypt(uberzahl num);
+
+	// encrypt nblocks*16 bytes of contiguous memory starting at addr
+	// NOTE: can segfault if user does not own 
+	// mem in range [addr, addr+16*nblocks)
+	void encryptArray(void* addr, unsigned nblocks);
+	void decryptArray(void* addr, unsigned nblocks);
 
 };
 

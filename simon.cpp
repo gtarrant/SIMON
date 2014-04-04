@@ -2,7 +2,8 @@
 #include <iostream>
 #include <assert.h>
 
-void SIMON::encryptArray(INT* data, unsigned nblocks){
+void SIMON::encryptArray(void* addr, unsigned nblocks){
+	INT* data = static_cast<INT*>(addr);
 	for (int i = 0; i < nblocks; ++i){
 		INT& x = *data;
 		data++;
@@ -12,11 +13,10 @@ void SIMON::encryptArray(INT* data, unsigned nblocks){
 			round(x, y, j);
 		}
 	}
-
-
 }
 
-void SIMON::decryptArray(INT* data, unsigned nblocks){
+void SIMON::decryptArray(void* addr, unsigned nblocks){
+	INT* data = static_cast<INT*>(addr);
 	for (int i = 0; i < nblocks; ++i){
 		INT& x = *data;
 		data++;
@@ -31,7 +31,6 @@ void SIMON::decryptArray(INT* data, unsigned nblocks){
 uberzahl SIMON::encrypt(uberzahl num) {
 	doCryptography(num, true);
 	return num;
-	
 }
 
 uberzahl SIMON::decrypt(uberzahl num) {;
