@@ -1,8 +1,6 @@
-#include "simon.h"
 #include <iostream>
-#include <cstdlib>
-#include "timer.h"
 #include "uberzahl.h"
+#include "simon.h"
 
 using namespace std;
 
