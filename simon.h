@@ -55,10 +55,11 @@ class SIMON {
 
 	// generate 128-bit key split in two 64-bit ints
 	inline pair<INT, INT> genKey(){ return {gen(), gen()}; };
-	
 
 	// set 128-bit key and perform key expansion
 	void setKey(const pair<INT, INT>&);
+
+	void setAndGenKey() {setKey(genKey());}
 
 	uberzahl encrypt(uberzahl num);
 	uberzahl decrypt(uberzahl num);
