@@ -12,6 +12,7 @@ void EncryptingCString() {
 	
 	// bytes must be a multiple of 16
 	// or it might seg fault
+	// since this implementation used 128bit block sizes
 	const int bytes = 32;
 	char test[bytes] = "hi i'm encrypting this";
 	
@@ -40,6 +41,7 @@ void TestVectorArray() {
 	
 	// bytes must be a multiple of 16
 	// or it might seg fault
+	// since this implementation used 128bit block sizes
 	int bytes = 16;
 	INT * data = (INT*)malloc(bytes);
 	data[0] = 0x6373656420737265;
