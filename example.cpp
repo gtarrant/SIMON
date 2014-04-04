@@ -12,7 +12,7 @@ void EncryptingCString() {
 	// or it might seg fault
 	// since this implementation used 128bit block sizes
 	const int bytes = 32;
-	char test[bytes] = "hi i'm encrypting this";
+	char test[bytes] = "hi i'm encrypting this.";
 	
 	cout << test << endl;
 	s.encryptArray(test, bytes / 16);

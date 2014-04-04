@@ -54,13 +54,17 @@ void SIMON::cryptoString(std::string  &text, bool isEncryption) {
 	if (remainder != 0) bytes += 16 - remainder;
 	char * data = (char*)malloc(bytes);
 	
-	for (int i = 0; i < bytes; i++) data[i] = '\0';
+	if (isEncryption) {
+		srand(gen());
+		for (int i = 0; i < bytes; i++) data[i] = gen();
+	}
 	
 	// string to array
 	int i = 0;
 	for (auto c : text) {
 		data[i++] = c;
 	}
+	if (isEncryption) data[i] = '\0';
 	
 	if (isEncryption) encryptArray(data, bytes / 16);
 	else decryptArray(data, bytes / 16);
