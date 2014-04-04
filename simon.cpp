@@ -1,11 +1,8 @@
 #include "simon.h"
 #include <iostream>
 #include <assert.h>
-#include <math.h>
-using namespace std;
 
 void SIMON::encryptArray(INT* data, unsigned nblocks){
-	//INT* data = static_cast<INT*>(addr);
 	for (int i = 0; i < nblocks; ++i){
 		INT& x = *data;
 		data++;
@@ -20,7 +17,6 @@ void SIMON::encryptArray(INT* data, unsigned nblocks){
 }
 
 void SIMON::decryptArray(INT* data, unsigned nblocks){
-	//INT* data = static_cast<INT*>(addr);
 	for (int i = 0; i < nblocks; ++i){
 		INT& x = *data;
 		data++;
@@ -44,23 +40,20 @@ uberzahl SIMON::decrypt(uberzahl num) {;
 }
 
 void SIMON::doCryptography(uberzahl &num, bool isEncryption) {
-	bool isOdd = num.value.size() & 1;
-	//if (num.value.size() & 1) isOdd = true;
-	
 	INT bytes = num.value.size() * 4;
 	short remainder = bytes % 16;
 	if (remainder != 0) bytes += 16 - remainder;
 	INT * data = (INT*)malloc(bytes);
 
-	uberToArray(num, data, isOdd, bytes);
+	uberToArray(num, data, bytes);
 	if (isEncryption) encryptArray(data, bytes / 16);
 	else decryptArray(data, bytes / 16);
-	arrayToUber(num, data, isOdd, bytes);
+	arrayToUber(num, data, bytes);
 	
 	free(data);
 }
 
-void SIMON::uberToArray(const uberzahl &num, INT* data, bool isOdd, INT bytes) {
+void SIMON::uberToArray(const uberzahl &num, INT* data, INT bytes) {
   
 	unsigned long long dataIndice = 0;
 	
@@ -68,30 +61,17 @@ void SIMON::uberToArray(const uberzahl &num, INT* data, bool isOdd, INT bytes) {
 	while (temp.value.size() % 4 != 0) temp.value.push_back(0);
 	
 	
-	/*for () {
-		unsigned long long longNum = num.value[i] + (((unsigned long long) num.value[i + 1]) << 32);
-		data[dataIndice++] = longNum;
-		
-		unsigned long long longNum2 = num.value[i] + (((unsigned long long) num.value[i + 1]) << 32);
-		data[dataIndice++] = longNum2;
-	}*/
-	
 	for (int long long i = temp.value.size() - 2; i >= 0; i -= 2) {
 		unsigned long long longNum = temp.value[i] + (((unsigned long long) temp.value[i + 1]) << 32);
 		data[dataIndice++] = longNum;
 	}
-	
-	/*if (isOdd) {
-		data[1] = num.value[num.value.size() - 1];
-		data[0] = 0;
-	}*/
 	
 	for (int i = dataIndice; i < bytes / 8; i++) {
 		data[i] = 0;
 	}
 }
 
-void SIMON::arrayToUber(uberzahl &num, INT* data, bool isOdd, INT bytes) {
+void SIMON::arrayToUber(uberzahl &num, INT* data, INT bytes) {
 	unsigned long long dataIndice = bytes / 8 - 1;
 	
 	num = "0";

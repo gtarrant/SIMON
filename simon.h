@@ -50,8 +50,8 @@ class SIMON {
 	// NOTE: can segfault if user does not own mem in range [addr, addr+16*nblocks)
 	void encryptArray(INT* data, unsigned nblocks);
 	void decryptArray(INT* data, unsigned nblocks);
-	void uberToArray(const uberzahl &num, INT* data, bool isOdd, INT bytes);
-	void arrayToUber(uberzahl &num, INT* data, bool isOdd, INT bytes);
+	void uberToArray(const uberzahl &num, INT* data, INT bytes);
+	void arrayToUber(uberzahl &num, INT* data, INT bytes);
 	void doCryptography(uberzahl &num, bool isEncryption);
   public:
 	// constructor takes arg to seed random number generator
