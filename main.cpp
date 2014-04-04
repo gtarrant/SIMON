@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "timer.h"
+#include "uberzahl.h"
 
 using std::cout;
 using std::cin;
@@ -32,35 +33,55 @@ int main(){
 	*/
  
 	getPerformanceInfo();
+	/*
+	SIMON s(1234);
+	s.setKey({0x0f0e0d0c0b0a0908, 0x0706050403020100});
+	//uberzahl num("132192742177667483844156138223589028896");
+	uberzahl num("0");
+	uberzahl encrypted = s.encrypt(num);
+	cout << "enc: " << encrypted << endl;
+	cout << "ori: " << num << endl;
+	cout << "dec: " << s.decrypt(encrypted) << endl;
+	
+	cout << endl << endl;
+	
+	uberzahl num2("132192742177667483844156138223589028896");
+	//uberzahl num("2");
+	uberzahl encrypted2 = s.encrypt(num2);
+	cout << "encrypted: " << encrypted2 << endl;
+	cout << "original: " << num2 << endl;
+	cout << "decrpyted: " << s.decrypt(encrypted2) << endl;*/
+	
+	
+
 }
 
 void getPerformanceInfo() {
+  
 	SIMON s(1234);
 	
-	s.genKey();
+	s.setKey(s.genKey());
 	Timer timer;
 	
+	
 	cout << "ENCRYPTION" << endl;
-	for (int i = 0; i < 12; i++) {
+	for (int i = 0; i < 13; i++) {
 	    INT bytes = 2 << i;
-	    INT * dicks = (INT*)malloc(bytes);
-	    for (int j = 0; j < 2*i; j += 2) {
-		dicks[j] = 0x6373656420737265;
-		dicks[j + 1] = 0x6c6c657661727420;
-	    }
+	    uberzahl num;
+	    num.random(bytes);
 	    
 	    timer.start();
 	    for (int k = 0; k < 10; k++) {
-	      s.encrypt(dicks, bytes);
-	      s.encrypt(dicks, bytes);
-	      s.encrypt(dicks, bytes);
-	      s.encrypt(dicks, bytes);
-	      s.encrypt(dicks, bytes);
-	      s.encrypt(dicks, bytes);
-	      s.encrypt(dicks, bytes);
-	      s.encrypt(dicks, bytes);
-	      s.encrypt(dicks, bytes);
-	      s.encrypt(dicks, bytes);
+	      s.encrypt(num);
+	      s.encrypt(num);
+	      s.encrypt(num);
+	      s.encrypt(num);
+	      s.encrypt(num);
+	      s.encrypt(num);
+	      s.encrypt(num);
+	      s.encrypt(num);
+	      s.encrypt(num);
+	      s.encrypt(num);
 	    }
 	    timer.stop();
 	    
@@ -69,26 +90,23 @@ void getPerformanceInfo() {
 	cout << endl;
 	
 	cout << "DECRYPTION" << endl;
-	for (int i = 0; i < 12; i++) {
+	for (int i = 0; i < 13; i++) {
 	    INT bytes = 2 << i;
-	    INT * dicks = (INT*)malloc(bytes);
-	    for (int j = 0; j < 2*i; j += 2) {
-		dicks[j] = 0x6373656420737265;
-		dicks[j + 1] = 0x6c6c657661727420;
-	    }
+	    uberzahl num;
+	    num.random(bytes);
 	    
 	    timer.start();
 	    for (int k = 0; k < 10; k++) {
-	      s.decrypt(dicks, bytes);
-	      s.decrypt(dicks, bytes);
-	      s.decrypt(dicks, bytes);
-	      s.decrypt(dicks, bytes);
-	      s.decrypt(dicks, bytes);
-	      s.decrypt(dicks, bytes);
-	      s.decrypt(dicks, bytes);
-	      s.decrypt(dicks, bytes);
-	      s.decrypt(dicks, bytes);
-	      s.decrypt(dicks, bytes);
+	      s.decrypt(num);
+	      s.decrypt(num);
+	      s.decrypt(num);
+	      s.decrypt(num);
+	      s.decrypt(num);
+	      s.decrypt(num);
+	      s.decrypt(num);
+	      s.decrypt(num);
+	      s.decrypt(num);
+	      s.decrypt(num);
 	    }
 	    timer.stop();
 	    

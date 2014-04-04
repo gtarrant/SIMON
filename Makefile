@@ -1,2 +1,2 @@
-all: main.cpp simon.h simon.cpp
-	g++ main.cpp simon.cpp -std=c++11 -o simon
+all: main.cpp simon.h simon.cpp uberzahl.h uberzahl.cpp timer.h
+	g++ -g main.cpp simon.cpp uberzahl.cpp -std=c++11 -o simon
