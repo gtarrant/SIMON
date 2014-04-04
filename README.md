@@ -1,9 +1,11 @@
 =====SIMON=====
+128bit block size
 
 =====COMPILE INSTRUCTIONS=====
 
 Use included Makefile to compile to use main.cpp.
-Included main.cpp file is a test file for performance and can be used as a reference. 
+Included main.cpp file is a test file for performance measure and can be used as a basic reference. 
+Included example.cpp file serves as more examples with different data types and can be used as a main.cpp
 Replace main.cpp with your own main.cpp to call the encryption/decryption/key gen functions.
 
 Compiled with gcc 4.7.0 to support command line option "-std=c++11".
