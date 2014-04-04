@@ -1,11 +1,10 @@
 =====SIMON=====
-128bit block size
+128/128 block size
 
 =====COMPILE INSTRUCTIONS=====
 
-Use included Makefile to compile to use example.cpp.
+Use included Makefile to compile to use example.cpp as main function.
 Included example.cpp file shows examples for usage and serves as a main function.
-Included main.cpp is deprecated and NOT used in compiling, but contains performance function.
 
 Compiled with gcc 4.7.0 to support command line option "-std=c++11".
 
@@ -14,8 +13,8 @@ Compiled with gcc 4.7.0 to support command line option "-std=c++11".
 See included example.cpp as an example.
 
 SIMON's constructor argument serves as a seed.
-SIMON's genKey() will generate a key. Use the class' setKey() to set that output as the Key.
-Alternatively, SIMON also includes a setAndGenKey() function to do both.
+SIMON includes a setAndGenKey() function to generate and set a key.
+SIMON also includes manual setKey and genKey functions.
 SIMON's encrypt and decrypt argument accepts a single uberzahl as an argument.
 
 =====PERFORMANCE=====
