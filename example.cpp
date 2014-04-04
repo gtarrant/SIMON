@@ -33,6 +33,8 @@ void EncryptingUberzahl() {
 	cout << s.decrypt(encrypted) << endl;
 }
 
+
+// official simon128/128 test vector
 void TestVectorArray() {
 	SIMON s(1234);
 	s.setKey({0x0f0e0d0c0b0a0908, 0x0706050403020100});
@@ -45,11 +47,11 @@ void TestVectorArray() {
 	data[0] = 0x6373656420737265;
 	data[1] = 0x6c6c657661727420;
 	
-	cout << data[0] << " " << data[bytes / 16] <<  endl;
+	cout << hex << data[0] << " " << hex << data[bytes / 16] <<  endl;
 	s.encryptArray(data, 1);
-	cout << data[0] << " " << data[bytes / 16] <<  endl;
+	cout << hex << data[0] << " " << hex << data[bytes / 16] <<  endl;
 	s.decryptArray(data, 1);
-	cout << data[0] << " " << data[bytes / 16] <<  endl;
+	cout << hex << data[0] << " " << hex << data[bytes / 16] <<  endl;
 
 }
 
