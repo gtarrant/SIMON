@@ -12,8 +12,8 @@ void EncryptingCString() {
 	
 	// bytes must be a multiple of 16
 	// or it might seg fault
-	int bytes = 32;
-	char test[32] = "hi i'm encrypting this";
+	const int bytes = 32;
+	char test[bytes] = "hi i'm encrypting this";
 	
 	cout << test << endl;
 	s.encryptArray(test, bytes / 16);
