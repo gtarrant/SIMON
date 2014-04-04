@@ -4,6 +4,7 @@
 #include <utility>
 #include <random>
 #include <limits.h>
+#include <string>
 #include "uberzahl.h"
 
 #define rol(val,k) ((val<<k)|(val>>(sizeof(INT)*CHAR_BIT-k)))
@@ -49,6 +50,7 @@ class SIMON {
 	void uberToArray(const uberzahl &num, INT* data, INT bytes);
 	void arrayToUber(uberzahl &num, INT* data, INT bytes);
 	void doCryptography(uberzahl &num, bool isEncryption);
+	void cryptoString(std::string &text, bool isEncryption);
   public:
 	// constructor takes arg to seed random number generator
 	inline SIMON(unsigned seed = 0){ gen.seed(seed); };
@@ -63,6 +65,8 @@ class SIMON {
 
 	uberzahl encrypt(uberzahl num);
 	uberzahl decrypt(uberzahl num);
+	std::string encrypt(std::string text);
+	std::string decrypt(std::string text);
 
 	// encrypt nblocks*16 bytes of contiguous memory starting at addr
 	// NOTE: can segfault if user does not own 

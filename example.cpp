@@ -33,6 +33,17 @@ void EncryptingUberzahl() {
 	cout << s.decrypt(encrypted) << endl;
 }
 
+void EncryptingString() {
+	SIMON s(1234);
+	s.setKey({0x0f0e0d0c0b0a0908, 0x0706050403020100});
+	
+	std::string text = "Hi I'm encrypting this.";
+	
+	cout << text << endl;
+	string encrypted = s.encrypt(text);
+	cout << encrypted << endl;
+	cout << s.decrypt(encrypted) << endl;
+}
 
 // official simon128/128 test vector
 void TestVectorArray() {
@@ -71,6 +82,8 @@ int main() {
 	EncryptingCString();
 	cout << endl;
 	EncryptingUberzahl();
+	cout << endl;
+	EncryptingString();
 	cout << endl;
 	TestVectorArray();
 	cout << endl;

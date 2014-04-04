@@ -37,6 +37,48 @@ uberzahl SIMON::decrypt(uberzahl num) {;
 	doCryptography(num, false);
 	return num;
 }
+std::string SIMON::encrypt(std::string text) {
+	cryptoString(text, true);
+	return text;
+}
+
+std::string SIMON::decrypt(std::string  text) {
+	cryptoString(text, false);
+	return text;
+}
+
+void SIMON::cryptoString(std::string  &text, bool isEncryption) {
+  
+	INT bytes = text.size();
+	short remainder = bytes % 16;
+	if (remainder != 0) bytes += 16 - remainder;
+	char * data = (char*)malloc(bytes);
+	
+	for (int i = 0; i < bytes; i++) data[i] = '\0';
+	
+	// string to array
+	int i = 0;
+	for (auto c : text) {
+		data[i++] = c;
+	}
+	
+	if (isEncryption) encryptArray(data, bytes / 16);
+	else decryptArray(data, bytes / 16);
+	
+	// array to string
+	if (isEncryption) {
+	    text.clear();
+	    i = 0;
+	    for (; i < bytes; i++) text.push_back(data[i]);
+	}
+	else {
+	    text.clear();
+	    i = 0;
+	    while (data[i] != '\0') text.push_back(data[i++]);
+	}
+	
+	free(data);
+}
 
 void SIMON::doCryptography(uberzahl &num, bool isEncryption) {
 	INT bytes = num.value.size() * 4;
